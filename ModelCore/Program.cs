@@ -8,21 +8,28 @@ namespace ModelCore
         static void Main(string[] args)
         {
 
-            using (CatalogContext catalog = new CatalogContext())
+            try
             {
-                BrandRepository brandRepository = new BrandRepository(catalog);
-
-                foreach(var brand in brandRepository.GetAll())
+                using (CatalogContext catalog = new CatalogContext())
                 {
-                    Console.WriteLine(brand.ToString());
-                }
+                    BrandRepository brandRepository = new BrandRepository(catalog);
 
-                TypeRepository typeRepository = new TypeRepository(catalog);
+                    foreach (var brand in brandRepository.GetAll())
+                    {
+                        Console.WriteLine(brand.ToString());
+                    }
 
-                foreach(Type type in typeRepository.GetAll())
-                {
-                    Console.WriteLine($"{type.PK_TypeId}.{type.Name}{Environment.NewLine}{type.Description}");
+                    TypeRepository typeRepository = new TypeRepository(catalog);
+
+                    foreach (Type type in typeRepository.GetAll())
+                    {
+                        Console.WriteLine($"{type.PK_TypeId}.{type.Name}{Environment.NewLine}{type.Description}");
+                    }
                 }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
 
             Console.ReadLine();
