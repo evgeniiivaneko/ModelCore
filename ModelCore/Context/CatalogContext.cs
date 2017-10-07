@@ -109,9 +109,9 @@ namespace ModelCore
 
             modelBuilder.Entity<Image>(entity =>
             {
-                entity.HasKey(e => e.PkImageId);
+                entity.HasKey(e => e.PK_ImageId);
 
-                entity.Property(e => e.PkImageId).HasColumnName("PK_ImageId");
+                entity.Property(e => e.PK_ImageId).HasColumnName("PK_ImageId");
 
                 entity.Property(e => e.Description).HasMaxLength(128);
 
@@ -163,13 +163,13 @@ namespace ModelCore
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasKey(e => e.PkProductId);
+                entity.HasKey(e => e.PK_ProductId);
 
                 entity.HasIndex(e => e.FkImage)
                     .HasName("UQ__Product__2C75D17A1AC9A590")
                     .IsUnique();
 
-                entity.Property(e => e.PkProductId).HasColumnName("PK_ProductId");
+                entity.Property(e => e.PK_ProductId).HasColumnName("PK_ProductId");
 
                 entity.Property(e => e.Description)
                     .IsRequired()

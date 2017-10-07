@@ -1,40 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ModelCore.DataAccess.Interface;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-
+using ModelCore.DataAccess.Interface;
 namespace ModelCore.DataAccess
 {
-    public class ImageRepository : IRepository<Image>
+    public class ProductRepository : IRepository<Product>
     {
         private Boolean isDispose = false;
         private readonly CatalogContext catalogContext;
-        public ImageRepository()
+
+        public ProductRepository()
         {
             catalogContext = new CatalogContext();
         }
-        public ImageRepository(CatalogContext _catalogContext)
+        public ProductRepository(CatalogContext _catalogContext)
         {
             this.catalogContext = _catalogContext;
         }
 
-        public void Create(Image item)
+        public void Create(Product item)
         {
-            catalogContext.Image.Add(item);
+            catalogContext.Product.Add(item);
         }
 
         public void Delete(int id)
         {
-            Image image = this.GetById(id);
-            if (image != null)
-                catalogContext.Image.Remove(image);
+            Product product = this.GetById(id);
+            if(product != null)
+            {
+                catalogContext.Product.Remove(product);
+            }
         }
 
         public virtual void Dispose(Boolean disposing)
         {
-            if (!this.isDispose)
+            if(!this.isDispose)
             {
                 if (disposing)
                 {
@@ -50,14 +52,14 @@ namespace ModelCore.DataAccess
             GC.SuppressFinalize(this);
         }
 
-        public IEnumerable<Image> GetAll()
+        public IEnumerable<Product> GetAll()
         {
-            return catalogContext.Image.ToList();
+            return catalogContext.Product.ToList();
         }
 
-        public Image GetById(int id)
+        public Product GetById(int id)
         {
-            return catalogContext.Image.FirstOrDefault(x => x.PK_ImageId == id);
+            return catalogContext.Product.FirstOrDefault(x => x.PK_ProductId == id);
         }
 
         public void Save()
@@ -65,9 +67,9 @@ namespace ModelCore.DataAccess
             catalogContext.SaveChanges();
         }
 
-        public void Update(Image item)
+        public void Update(Product item)
         {
-            catalogContext.Entry<Image>(item).State = EntityState.Modified;
+            catalogContext.Entry<Product>(item).State = EntityState.Modified;
         }
     }
 }

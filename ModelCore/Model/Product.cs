@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ModelCore
 {
@@ -12,8 +14,15 @@ namespace ModelCore
             Review = new HashSet<Review>();
         }
 
-        public int PkProductId { get; set; }
+        [Key]
+        public int PK_ProductId { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Model { get; set; }
+
+        [Required]
+        [StringLength(1024)]
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int FkType { get; set; }
