@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ModelCore
 {
+    [Table("Review")]
     public partial class Review
     {
         public Review()
@@ -10,7 +13,11 @@ namespace ModelCore
             Image = new HashSet<Image>();
         }
 
-        public int PkReviewId { get; set; }
+        [Key]
+        public int PK_ReviewId { get; set; }
+
+        [Required]
+        [StringLength(1024)]
         public string Message { get; set; }
         public int FkProduct { get; set; }
         public int FkUser { get; set; }

@@ -72,13 +72,13 @@ namespace ModelCore
 
             modelBuilder.Entity<Conditioner>(entity =>
             {
-                entity.HasKey(e => e.FkProductId);
+                entity.HasKey(e => e.FK_ProductId);
 
-                entity.HasIndex(e => e.FkProductId)
+                entity.HasIndex(e => e.FK_ProductId)
                     .HasName("UQ__Conditio__E10D3FC0266B40E0")
                     .IsUnique();
 
-                entity.Property(e => e.FkProductId)
+                entity.Property(e => e.FK_ProductId)
                     .HasColumnName("FK_ProductId")
                     .ValueGeneratedNever();
 
@@ -102,7 +102,7 @@ namespace ModelCore
 
                 entity.HasOne(d => d.FkProduct)
                     .WithOne(p => p.Conditioner)
-                    .HasForeignKey<Conditioner>(d => d.FkProductId)
+                    .HasForeignKey<Conditioner>(d => d.FK_ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Product_Conditioner");
             });
@@ -208,9 +208,9 @@ namespace ModelCore
 
             modelBuilder.Entity<Review>(entity =>
             {
-                entity.HasKey(e => e.PkReviewId);
+                entity.HasKey(e => e.PK_ReviewId);
 
-                entity.Property(e => e.PkReviewId).HasColumnName("PK_ReviewId");
+                entity.Property(e => e.PK_ReviewId).HasColumnName("PK_ReviewId");
 
                 entity.Property(e => e.FkProduct).HasColumnName("FK_Product");
 
