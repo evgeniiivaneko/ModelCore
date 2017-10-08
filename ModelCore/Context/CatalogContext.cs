@@ -32,9 +32,9 @@ namespace ModelCore
         {
             modelBuilder.Entity<AccessRights>(entity =>
             {
-                entity.HasKey(e => e.PkAccessRightsId);
+                entity.HasKey(e => e.PK_AccessRightsId);
 
-                entity.Property(e => e.PkAccessRightsId).HasColumnName("PK_AccessRightsId");
+                entity.Property(e => e.PK_AccessRightsId).HasColumnName("PK_AccessRightsId");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -136,9 +136,9 @@ namespace ModelCore
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.HasKey(e => e.PkOrderId);
+                entity.HasKey(e => e.PK_OrderId);
 
-                entity.Property(e => e.PkOrderId).HasColumnName("PK_OrderId");
+                entity.Property(e => e.PK_OrderId).HasColumnName("PK_OrderId");
 
                 entity.Property(e => e.Comment).HasMaxLength(1024);
 
