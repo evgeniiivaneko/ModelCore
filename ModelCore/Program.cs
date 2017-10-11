@@ -1,6 +1,7 @@
 ﻿using System;
 using ModelCore.DataAccess;
-
+using ModelCore.UnitOfWork;
+using System.Drawing;
 namespace ModelCore
 {
     class Program
@@ -10,24 +11,19 @@ namespace ModelCore
 
             try
             {
-                using (CatalogContext catalog = new CatalogContext())
-                {
-                    BrandRepository brandRepository = new BrandRepository(catalog);
 
-                    foreach (var brand in brandRepository.GetAll())
+
+
+                using (UnitOfWork.UnitOfWork unitOfWork = new UnitOfWork.UnitOfWork())
+                {
+                    foreach (Brand brand in unitOfWork.Brand.GetAll())
                     {
                         Console.WriteLine(brand.ToString());
-                    }
-
-                    TypeRepository typeRepository = new TypeRepository(catalog);
-
-                    foreach (Type type in typeRepository.GetAll())
-                    {
-                        Console.WriteLine($"{type.PK_TypeId}.{type.Name}{Environment.NewLine}{type.Description}");
+                        Console.WriteLine("--------------------------------------------");
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

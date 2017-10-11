@@ -31,7 +31,7 @@ namespace ModelCore
         [StringLength(40)]
         public string Country { get; set; }
 
-        public int FK_Image { get; set; }
+        public int? FK_Image { get; set; }
 
         public ICollection<Product> Product { get; set; }
 
